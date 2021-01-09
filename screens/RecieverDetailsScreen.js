@@ -1,5 +1,5 @@
 import React ,{Component} from 'react';
-import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
+import {View,Text,StyleSheet,TouchableOpacity,ScrollView} from 'react-native';
 import{Card,Header,Icon} from 'react-native-elements';
 import firebase from 'firebase';
 
@@ -73,7 +73,7 @@ export default class RecieverDetailsScreen extends Component{
 
     render(){
       return(
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           <View style={{flex:0.1}}>
             <Header
               leftComponent ={<Icon name='arrow-left' type='feather' color='#696969'  onPress={() => this.props.navigation.goBack()}/>}
@@ -126,7 +126,7 @@ export default class RecieverDetailsScreen extends Component{
               : null
             }
           </View>
-        </View>
+        </ScrollView>
       )
     }
 
@@ -135,7 +135,7 @@ export default class RecieverDetailsScreen extends Component{
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+ //   flex:1,
   },
   buttonContainer : {
     flex:0.3,

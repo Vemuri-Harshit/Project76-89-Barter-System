@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import {View,Text,KeyboardAvoidingView,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert} from 'react-native';
-
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  TextInput,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Alert} from 'react-native';
 import MyHeader from '../components/MyHeader'
 import db from '../config'
 import firebase from 'firebase'
@@ -57,19 +64,59 @@ export default class SettingScreen extends Component{
   render(){
     return(
       <View style={styles.container} >
-         <View style={{flex:1}}>
         <MyHeader title="Settings" navigation={this.props.navigation}/>
-        </View>
         <View style={styles.formContainer}>
-            <TextInput style={styles.formTextInput} placeholder ={"First Name"} maxLength ={8} onChangeText={(text)=>{ this.setState({firstName: text})}} value ={this.state.firstName} />                                       
-            <TextInput style={styles.formTextInput} placeholder ={"Last Name"} maxLength ={8} onChangeText={(text)=>{this.setState({lastName: text})}} value ={this.state.lastName} />                           
-            <TextInput style={styles.formTextInput} placeholder ={"Contact"} maxLength ={10} keyboardType={'numeric'} onChangeText={(text)=>{this.setState({contact: text})}} value ={this.state.contact} />                                          
-            <TextInput style={styles.formTextInput} placeholder ={"Address"} multiline = {true} onChangeText={(text)=>{this.setState({address: text})}} value ={this.state.address} />
-            
-            <TouchableOpacity style={styles.button} onPress={()=>{this.updateUserDetails()}}>
+            <TextInput
+              style={styles.formTextInput}
+              placeholder ={"First Name"}
+              maxLength ={8}
+              onChangeText={(text)=>{
+                this.setState({
+                  firstName: text
+                })
+              }}
+              value ={this.state.firstName}
+            />
+            <TextInput
+              style={styles.formTextInput}
+              placeholder ={"Last Name"}
+              maxLength ={8}
+              onChangeText={(text)=>{
+                this.setState({
+                  lastName: text
+                })
+              }}
+                value ={this.state.lastName}
+            />
+            <TextInput
+              style={styles.formTextInput}
+              placeholder ={"Contact"}
+              maxLength ={10}
+              keyboardType={'numeric'}
+              onChangeText={(text)=>{
+                this.setState({
+                  contact: text
+                })
+              }}
+                value ={this.state.contact}
+            />
+            <TextInput
+              style={styles.formTextInput}
+              placeholder ={"Address"}
+              multiline = {true}
+              onChangeText={(text)=>{
+                this.setState({
+                  address: text
+                })
+              }}
+                value ={this.state.address}
+            />
+            <TouchableOpacity style={styles.button}
+              onPress={()=>{
+                this.updateUserDetails()
+              }}>
               <Text style={styles.buttonText}>Save</Text>
             </TouchableOpacity>
-            
         </View>
       </View>
     )
@@ -79,9 +126,9 @@ export default class SettingScreen extends Component{
 
 const styles = StyleSheet.create({
   container : {
-   flex:1,
-   // alignItems: 'center',
-    //justifyContent: 'center'
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   formContainer:{
     flex:1,
