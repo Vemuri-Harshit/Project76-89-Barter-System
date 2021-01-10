@@ -91,7 +91,11 @@ export default class RecieverDetailsScreen extends Component{
       return(
         <ScrollView style={styles.container}>
           <View style={{flex:0.1}}>
-            <MyHeader title ="Donate Items"  navigation ={this.props.navigation}/>
+          <Header
+              leftComponent ={<Icon name='arrow-left' type='feather' color='#696969'  onPress={() => this.props.navigation.goBack()}/>}
+              centerComponent={{ text:"Donate Items", style: { color: '#90A5A9', fontSize:20,fontWeight:"bold", } }}
+              backgroundColor = "#eaf8fe"
+            />
           </View>
           <View style={{flex:0.3}}>
             <Card title={"Item Information"} titleStyle= {{fontSize : 20}}>

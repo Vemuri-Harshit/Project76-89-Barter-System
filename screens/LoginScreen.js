@@ -40,6 +40,7 @@ export default class LoginScreen extends Component{
               email_id:this.state.emailId,
               address:this.state.address,
               contact:this.state.contact,
+              IsItemRequestActive : false,
             })
             return alert( 'User Added Successfully','',[ {text: 'OK', onPress: () => this.setState({"isModalVisible" : false})},]);
           })
