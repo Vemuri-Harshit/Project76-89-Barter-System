@@ -2,6 +2,7 @@ import React ,{Component} from 'react';
 import {View,Text,StyleSheet,TouchableOpacity,ScrollView} from 'react-native';
 import{Card,Header,Icon} from 'react-native-elements';
 import firebase from 'firebase';
+import MyHeader from '../components/MyHeader'
 
 import db from '../config.js';
 
@@ -90,11 +91,7 @@ export default class RecieverDetailsScreen extends Component{
       return(
         <ScrollView style={styles.container}>
           <View style={{flex:0.1}}>
-            <Header
-              leftComponent ={<Icon name='arrow-left' type='feather' color='#696969'  onPress={() => this.props.navigation.goBack()}/>}
-              centerComponent={{ text:"Donate Items", style: { color: '#90A5A9', fontSize:20,fontWeight:"bold", } }}
-              backgroundColor = "#eaf8fe"
-            />
+            <MyHeader title ="Donate Items"  navigation ={this.props.navigation}/>
           </View>
           <View style={{flex:0.3}}>
             <Card title={"Item Information"} titleStyle= {{fontSize : 20}}>
