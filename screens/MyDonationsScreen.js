@@ -5,13 +5,14 @@ import MyHeader from '../components/MyHeader.js'
 import firebase from 'firebase';
 import db from '../config.js'
 
-export default class MyDonationScreen extends Component {
+export default class MyDonationsScreen extends Component {
    constructor(){
      super()
      this.state = {
        donorId : firebase.auth().currentUser.email,
        donorName : "",
-       allDonations : []
+       allDonations : [],
+       buttonDisabled : false
      }
      this.requestRef= null
    }
@@ -50,13 +51,39 @@ export default class MyDonationScreen extends Component {
        db.collection("donated_items").doc(itemDetails.doc_id).update({
          "request_status" : "Donor Interested"
        })
+       this.sendNotification(itemDetails,requestStatus)
      }
      else{
        var requestStatus = "Item Sent"
        db.collection("donated_items").doc(itemDetails.doc_id).update({
          "request_status" : "Item Sent"
        })
+       this.sendNotification(itemDetails,requestStatus)
      }
+   }
+
+   sendNotification=(itemDetails,requestStatus)=>{
+     var requestId = itemDetails.request_id
+     var donorId = itemDetails.donor_id
+     db.collection("all_notifications")
+     .where("request_id","==", requestId)
+     .where("donor_id","==",donorId)
+     .get()
+     .then((snapshot)=>{
+       snapshot.forEach((doc) => {
+         var message = ""
+         if(requestStatus === "Item Sent"){
+           message = this.state.donorName + " sent you the item"
+         }else{
+            message =  this.state.donorName  + " has shown interest in donating the item"
+         }
+         db.collection("all_notifications").doc(doc.id).update({
+           "message": message,
+           "notification_status" : "unread",
+           "date"                : firebase.firestore.FieldValue.serverTimestamp()
+         })
+       });
+     })
    }
 
    keyExtractor = (item, index) => index.toString()
@@ -78,7 +105,11 @@ export default class MyDonationScreen extends Component {
             ]}
             onPress = {()=>{
               this.sendItem(item)
+              this.setState({
+                buttonDisabled: true
+              })
             }}
+            disabled = {this.state.buttonDisabled}
            >
              <Text style={{color:'#ffff'}}>{
                item.request_status === "Item Sent" ? "Item Sent" : "Send Item"

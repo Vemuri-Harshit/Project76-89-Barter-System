@@ -18,8 +18,10 @@ export default class RecieverDetailsScreen extends Component{
       recieverName    : '',
       recieverContact : '',
       recieverAddress : '',
-      recieverRequestDocId : ''
+      recieverRequestDocId : '',
+      disabled: false
     }
+    console.log(this.state.itemName, this.state.reason)
   }
 
 
@@ -29,7 +31,7 @@ export default class RecieverDetailsScreen extends Component{
     .then(snapshot=>{
       snapshot.forEach(doc=>{
         this.setState({
-          recieverName    : doc.data().first_name,
+          recieverName    : doc.data().first_name + " " + doc.data().last_name,
           recieverContact : doc.data().contact,
           recieverAddress : doc.data().address,
         })
@@ -65,6 +67,19 @@ export default class RecieverDetailsScreen extends Component{
     })
   }
 
+  addNotification=()=>{
+    var message = this.state.userName + " has shown interest in donating your item"
+    db.collection("all_notifications").add({
+      "targeted_user_id" : this.state.recieverId,
+      "donor_id"         : this.state.userId,
+      "request_id"       : this.state.requestId,
+      "item_name"        : this.state.itemName,
+      "date"             : firebase.firestore.FieldValue.serverTimestamp(),
+      "notification_status" : "unread",
+      "message"          : message
+    })
+  }
+
   componentDidMount(){
     this.getRecieverDetails()
     this.getUserDetails(this.state.userId)
@@ -82,43 +97,49 @@ export default class RecieverDetailsScreen extends Component{
             />
           </View>
           <View style={{flex:0.3}}>
-            <Card
-                title={"Item Information"}
-                titleStyle= {{fontSize : 20}}
-              >
+            <Card title={"Item Information"} titleStyle= {{fontSize : 20}}>
+              
               <Card >
                 <Text style={{fontWeight:'bold'}}>Name : {this.state.itemName}</Text>
               </Card>
+
               <Card>
                 <Text style={{fontWeight:'bold'}}>Reason : {this.state.reason}</Text>
               </Card>
+
             </Card>
           </View>
-          <View style={{flex:0.3}}>
-            <Card
-              title={"Reciever Information"}
-              titleStyle= {{fontSize : 20}}
-              >
+
+          <View >
+            <Card title={"Reciever Information"} titleStyle= {{fontSize : 20}}>
+
               <Card>
                 <Text style={{fontWeight:'bold'}}>Name: {this.state.recieverName}</Text>
               </Card>
+
               <Card>
                 <Text style={{fontWeight:'bold'}}>Contact: {this.state.recieverContact}</Text>
               </Card>
+
               <Card>
                 <Text style={{fontWeight:'bold'}}>Address: {this.state.recieverAddress}</Text>
               </Card>
+
             </Card>
           </View>
+
           <View style={styles.buttonContainer}>
-            {
+          {
               this.state.recieverId !== this.state.userId
               ?(
                 <TouchableOpacity
                     style={styles.button}
+                    disabled = {this.state.disabled}
                     onPress={()=>{
                       this.updateItemStatus()
+                      this.addNotification()
                       this.props.navigation.navigate('MyDonations')
+                      this.setState({disabled: true})
                     }}>
                   <Text>I want to Donate</Text>
                 </TouchableOpacity>
@@ -135,7 +156,7 @@ export default class RecieverDetailsScreen extends Component{
 
 const styles = StyleSheet.create({
   container: {
- //   flex:1,
+  //  flex:1,
   },
   buttonContainer : {
     flex:0.3,
