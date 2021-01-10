@@ -8,6 +8,7 @@ import {TabNavigator} from './TabNavigator'
 import SideBarMenu from './SideBarMenu'
 import SettingScreen from '../screens/SettingScreen'
 import MyDonationsScreen from '../screens/MyDonationsScreen'
+import NotificationScreen from '../screens/NotificationScreen'
 
 export const DrawerNavigator = createDrawerNavigator({
     Home:{
@@ -15,6 +16,9 @@ export const DrawerNavigator = createDrawerNavigator({
     },
     MyDonations:{
         screen:MyDonationsScreen
+    },
+    Notification :{
+        screen:NotificationScreen
     },
     Settings:{
         screen: SettingScreen
