@@ -216,7 +216,7 @@ renderItem=({item,i})=>{
           onPress={()=>{
             this.sendNotification()
             this.updateItemRequestStatus();
-            this.receivedItems(this.state.requesteItemName)
+            this.recievedItems(this.state.requesteItemName)
           }}>
           <Text>I recieved the item </Text>
           </TouchableOpacity>
