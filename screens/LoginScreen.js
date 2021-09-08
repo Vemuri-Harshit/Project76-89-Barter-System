@@ -129,7 +129,7 @@ export default class LoginScreen extends Component{
 const styles = StyleSheet.create({
     container:{
      flex:1,
-     backgroundColor:'#F8BE85',
+     backgroundColor:'#8380B6',
      alignItems: 'center',
      justifyContent: 'center'
    },
@@ -142,13 +142,13 @@ const styles = StyleSheet.create({
      fontSize:65,
      fontWeight:'300',
      paddingBottom:30,
-     color : '#ff3d00'
+     color : '#111D4A'
    },
    loginBox:{
      width: 300,
      height: 40,
      borderBottomWidth: 1.5,
-     borderColor : '#ff8a65',
+     borderColor : '#8789C0',
      fontSize: 20,
      margin:10,
      paddingLeft:10
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
      justifyContent:'center',
      alignSelf:'center',
      fontSize:30,
-     color:'#ff5722',
+     color:'#111D4A',
      margin:50
    },
    modalContainer:{
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
      borderRadius:20,
      justifyContent:'center',
      alignItems:'center',
-     backgroundColor:"#ffff",
+     backgroundColor:"#C2CAE8",
      marginRight:30,
      marginLeft : 30,
      marginTop:80,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
      width:"75%",
      height:35,
      alignSelf:'center',
-     borderColor:'#ffab91',
+     borderColor:'#111D4A',
      borderRadius:10,
      borderWidth:1,
      marginTop:20,
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
      marginTop:30
    },
    registerButtonText:{
-     color:'#ff5722',
+     color:'#8380B6',
      fontSize:15,
      fontWeight:'bold'
    },
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
      justifyContent:'center',
      alignItems:'center',
      borderRadius:25,
-     backgroundColor:"#ff9800",
+     backgroundColor:"#8380B6",
      shadowColor: "#000",
      shadowOffset: {
         width: 0,

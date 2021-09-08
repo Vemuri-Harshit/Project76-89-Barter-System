@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
     rowBack: {
         alignItems: 'center',
-        backgroundColor: '#29b6f6',
+        backgroundColor: '#C2CAE8',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         width: 100,
     },
     backRightBtnRight: {
-        backgroundColor: '#29b6f6',
+        backgroundColor: '#8789C0',
         right: 0,
     },
 });

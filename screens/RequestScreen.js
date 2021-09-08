@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     width:"75%",
     height:35,
     alignSelf:'center',
-    borderColor:'#ffab91',
+    borderColor:'#8380B6',
     borderRadius:10,
     borderWidth:1,
     marginTop:20,
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     borderRadius:10,
-    backgroundColor:"#ff5722",
+    backgroundColor:"#8380B6",
     shadowColor: "#000",
     shadowOffset: {
        width: 0,
